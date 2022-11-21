@@ -1,0 +1,26 @@
+﻿@page "/singleton"
+
+<PageTitle>Singleton</PageTitle>
+
+<h1>Singleton</h1>
+
+<p role="status">Current count: @currentCount</p>
+
+<button class="btn btn-primary" @onclick="IncrementCount">Click me</button>
+
+@code {
+    private int currentCount = 0;
+    Data.SingletonCount myCount = Data.SingletonCount.Instance;
+
+
+    protected override void OnInitialized()
+    {
+        currentCount = myCount.Counter;
+    }
+
+    private void IncrementCount()
+    {
+        myCount.Counter += 1;
+        currentCount = myCount.Counter;
+    }
+}
